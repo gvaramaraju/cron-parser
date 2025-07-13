@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ParsedCron {
+public class CronSchedule {
     public static final String MINUTE = "minute";
     public static final String HOUR = "hour";
     public static final String DAY_OF_MONTH = "day of month";
@@ -18,7 +18,7 @@ public class ParsedCron {
     private final String command;
     private Map<String, List<Integer>> mpp;
 
-    public ParsedCron(List<Integer> minutes, List<Integer> hours, List<Integer> dayOfMonth, List<Integer> month, List<Integer> dayOfWeek, String command) {
+    public CronSchedule(List<Integer> minutes, List<Integer> hours, List<Integer> dayOfMonth, List<Integer> month, List<Integer> dayOfWeek, String command) {
         this.mpp = new HashMap<>();
         this.minutes = minutes;
         mpp.put(MINUTE, minutes);

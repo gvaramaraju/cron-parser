@@ -2,8 +2,6 @@ package org.gvaramaraju.cron;
 
 
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ApplicationTest {
@@ -44,19 +42,19 @@ public class ApplicationTest {
                 .command("ABC")
                 .build();
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
-        ParsedCron parsedCron = cronParser.parseCron(cronExpression);
+        CronSchedule cronSchedule = cronParser.parseCron(cronExpression);
         List<Integer> minutes = IntStream.rangeClosed(0, 59).boxed().toList();
         List<Integer> hours = IntStream.rangeClosed(0, 23).boxed().toList();
         List<Integer> dayOfMonth = IntStream.rangeClosed(1, 31).boxed().toList();
         List<Integer> month = IntStream.rangeClosed(1, 12).boxed().toList();
         List<Integer> dayOfWeek = IntStream.rangeClosed(0, 6).boxed().toList();
-        String parsedCommand = parsedCron.getCommand();
+        String parsedCommand = cronSchedule.getCommand();
 
-        boolean isMinutesSame = minutes.equals(parsedCron.getMinutes());
-        boolean isHoursSame = hours.equals(parsedCron.getHours());
-        boolean isDayOfMonthSame = dayOfMonth.equals(parsedCron.getDayOfMonth());
-        boolean isMonthSame = month.equals(parsedCron.getMonth());
-        boolean isDayofWeekSame = dayOfWeek.equals(parsedCron.getDayOfWeek());
+        boolean isMinutesSame = minutes.equals(cronSchedule.getMinutes());
+        boolean isHoursSame = hours.equals(cronSchedule.getHours());
+        boolean isDayOfMonthSame = dayOfMonth.equals(cronSchedule.getDayOfMonth());
+        boolean isMonthSame = month.equals(cronSchedule.getMonth());
+        boolean isDayofWeekSame = dayOfWeek.equals(cronSchedule.getDayOfWeek());
         boolean isCommandSame = parsedCommand.equals("ABC");
 
         if(!isMinutesSame || !isHoursSame || !isDayOfMonthSame|| !isMonthSame || !isDayofWeekSame || !isCommandSame){
@@ -78,19 +76,19 @@ public class ApplicationTest {
                 .command("ABC")
                 .build();
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
-        ParsedCron parsedCron = cronParser.parseCron(cron2);
+        CronSchedule cronSchedule = cronParser.parseCron(cron2);
         List<Integer> minutes = List.of(0,15, 30, 45);
         List<Integer> hours = List.of(0);
         List<Integer> dayOfMonth =  List.of(1, 15);
         List<Integer> month = IntStream.rangeClosed(1, 12).boxed().toList();
         List<Integer> dayOfWeek = IntStream.rangeClosed(1, 5).boxed().toList();
-        String parsedCommand = parsedCron.getCommand();
+        String parsedCommand = cronSchedule.getCommand();
 
-        boolean isMinutesSame = minutes.equals(parsedCron.getMinutes());
-        boolean isHoursSame = hours.equals(parsedCron.getHours());
-        boolean isDayOfMonthSame = dayOfMonth.equals(parsedCron.getDayOfMonth());
-        boolean isMonthSame = month.equals(parsedCron.getMonth());
-        boolean isDayofWeekSame = dayOfWeek.equals(parsedCron.getDayOfWeek());
+        boolean isMinutesSame = minutes.equals(cronSchedule.getMinutes());
+        boolean isHoursSame = hours.equals(cronSchedule.getHours());
+        boolean isDayOfMonthSame = dayOfMonth.equals(cronSchedule.getDayOfMonth());
+        boolean isMonthSame = month.equals(cronSchedule.getMonth());
+        boolean isDayofWeekSame = dayOfWeek.equals(cronSchedule.getDayOfWeek());
         boolean isCommandSame = parsedCommand.equals("ABC");
 
         if(!isMinutesSame || !isHoursSame || !isDayOfMonthSame|| !isMonthSame || !isDayofWeekSame || !isCommandSame){
@@ -111,19 +109,19 @@ public class ApplicationTest {
                 .command("ABC")
                 .build();
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
-        ParsedCron parsedCron = cronParser.parseCron(cron3);
+        CronSchedule cronSchedule = cronParser.parseCron(cron3);
         List<Integer> minutes = IntStream.rangeClosed(0, 59).boxed().toList();
         List<Integer> hours = IntStream.rangeClosed(0, 23).boxed().toList();
         List<Integer> dayOfMonth = IntStream.rangeClosed(1, 31).boxed().toList();
         List<Integer> month = IntStream.rangeClosed(1, 12).boxed().toList();
         List<Integer> dayOfWeek = IntStream.rangeClosed(0, 6).boxed().toList();
-        String parsedCommand = parsedCron.getCommand();
+        String parsedCommand = cronSchedule.getCommand();
 
-        boolean isMinutesSame = minutes.equals(parsedCron.getMinutes());
-        boolean isHoursSame = hours.equals(parsedCron.getHours());
-        boolean isDayOfMonthSame = dayOfMonth.equals(parsedCron.getDayOfMonth());
-        boolean isMonthSame = month.equals(parsedCron.getMonth());
-        boolean isDayofWeekSame = dayOfWeek.equals(parsedCron.getDayOfWeek());
+        boolean isMinutesSame = minutes.equals(cronSchedule.getMinutes());
+        boolean isHoursSame = hours.equals(cronSchedule.getHours());
+        boolean isDayOfMonthSame = dayOfMonth.equals(cronSchedule.getDayOfMonth());
+        boolean isMonthSame = month.equals(cronSchedule.getMonth());
+        boolean isDayofWeekSame = dayOfWeek.equals(cronSchedule.getDayOfWeek());
         boolean isCommandSame = parsedCommand.equals("ABC");
 
         if(!isMinutesSame || !isHoursSame || !isDayOfMonthSame|| !isMonthSame || !isDayofWeekSame || !isCommandSame){
@@ -144,19 +142,19 @@ public class ApplicationTest {
                 .command("ABC")
                 .build();
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
-        ParsedCron parsedCron = cronParser.parseCron(cron4);
+        CronSchedule cronSchedule = cronParser.parseCron(cron4);
         List<Integer> minutes = List.of(0, 15, 30, 45);
         List<Integer> hours = List.of(12);
         List<Integer> dayOfMonth = List.of(10);
         List<Integer> month = List.of(6);
         List<Integer> dayOfWeek = List.of(3);
-        String parsedCommand = parsedCron.getCommand();
+        String parsedCommand = cronSchedule.getCommand();
 
-        boolean isMinutesSame = minutes.equals(parsedCron.getMinutes());
-        boolean isHoursSame = hours.equals(parsedCron.getHours());
-        boolean isDayOfMonthSame = dayOfMonth.equals(parsedCron.getDayOfMonth());
-        boolean isMonthSame = month.equals(parsedCron.getMonth());
-        boolean isDayofWeekSame = dayOfWeek.equals(parsedCron.getDayOfWeek());
+        boolean isMinutesSame = minutes.equals(cronSchedule.getMinutes());
+        boolean isHoursSame = hours.equals(cronSchedule.getHours());
+        boolean isDayOfMonthSame = dayOfMonth.equals(cronSchedule.getDayOfMonth());
+        boolean isMonthSame = month.equals(cronSchedule.getMonth());
+        boolean isDayofWeekSame = dayOfWeek.equals(cronSchedule.getDayOfWeek());
         boolean isCommandSame = parsedCommand.equals("ABC");
 
         if(!isMinutesSame || !isHoursSame || !isDayOfMonthSame|| !isMonthSame || !isDayofWeekSame || !isCommandSame){
@@ -177,19 +175,19 @@ public class ApplicationTest {
                 .command("ABC")
                 .build();
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
-        ParsedCron parsedCron = cronParser.parseCron(cron5);
+        CronSchedule cronSchedule = cronParser.parseCron(cron5);
         List<Integer> minutes = List.of(5);
         List<Integer> hours = List.of(8, 10, 12, 14, 16, 18);
         List<Integer> dayOfMonth = List.of(1);
         List<Integer> month = List.of(1, 6, 12);
         List<Integer> dayOfWeek = List.of(0, 2, 4);
-        String parsedCommand = parsedCron.getCommand();
+        String parsedCommand = cronSchedule.getCommand();
 
-        boolean isMinutesSame = minutes.equals(parsedCron.getMinutes());
-        boolean isHoursSame = hours.equals(parsedCron.getHours());
-        boolean isDayOfMonthSame = dayOfMonth.equals(parsedCron.getDayOfMonth());
-        boolean isMonthSame = month.equals(parsedCron.getMonth());
-        boolean isDayofWeekSame = dayOfWeek.equals(parsedCron.getDayOfWeek());
+        boolean isMinutesSame = minutes.equals(cronSchedule.getMinutes());
+        boolean isHoursSame = hours.equals(cronSchedule.getHours());
+        boolean isDayOfMonthSame = dayOfMonth.equals(cronSchedule.getDayOfMonth());
+        boolean isMonthSame = month.equals(cronSchedule.getMonth());
+        boolean isDayofWeekSame = dayOfWeek.equals(cronSchedule.getDayOfWeek());
         boolean isCommandSame = parsedCommand.equals("ABC");
 
         if(!isMinutesSame || !isHoursSame || !isDayOfMonthSame|| !isMonthSame || !isDayofWeekSame || !isCommandSame){
@@ -210,19 +208,19 @@ public class ApplicationTest {
                 .command("ABC")
                 .build();
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
-        ParsedCron parsedCron = cronParser.parseCron(cron6);
+        CronSchedule cronSchedule = cronParser.parseCron(cron6);
         List<Integer> minutes = List.of(0, 10, 20, 30, 40, 50);
         List<Integer> hours = IntStream.rangeClosed(0, 23).boxed().toList();
         List<Integer> dayOfMonth = IntStream.rangeClosed(5, 25).boxed().toList();
         List<Integer> month = IntStream.rangeClosed(3, 8).boxed().toList();
         List<Integer> dayOfWeek = List.of(1);
-        String parsedCommand = parsedCron.getCommand();
+        String parsedCommand = cronSchedule.getCommand();
 
-        boolean isMinutesSame = minutes.equals(parsedCron.getMinutes());
-        boolean isHoursSame = hours.equals(parsedCron.getHours());
-        boolean isDayOfMonthSame = dayOfMonth.equals(parsedCron.getDayOfMonth());
-        boolean isMonthSame = month.equals(parsedCron.getMonth());
-        boolean isDayofWeekSame = dayOfWeek.equals(parsedCron.getDayOfWeek());
+        boolean isMinutesSame = minutes.equals(cronSchedule.getMinutes());
+        boolean isHoursSame = hours.equals(cronSchedule.getHours());
+        boolean isDayOfMonthSame = dayOfMonth.equals(cronSchedule.getDayOfMonth());
+        boolean isMonthSame = month.equals(cronSchedule.getMonth());
+        boolean isDayofWeekSame = dayOfWeek.equals(cronSchedule.getDayOfWeek());
         boolean isCommandSame = parsedCommand.equals("ABC");
 
         if(!isMinutesSame || !isHoursSame || !isDayOfMonthSame|| !isMonthSame || !isDayofWeekSame || !isCommandSame){
@@ -243,19 +241,19 @@ public class ApplicationTest {
                 .command("ABC")
                 .build();
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
-        ParsedCron parsedCron = cronParser.parseCron(cron7);
+        CronSchedule cronSchedule = cronParser.parseCron(cron7);
         List<Integer> minutes = List.of(15);
         List<Integer> hours = List.of(14);
         List<Integer> dayOfMonth = List.of(28);
         List<Integer> month = List.of(2);
         List<Integer> dayOfWeek = List.of(0);
-        String parsedCommand = parsedCron.getCommand();
+        String parsedCommand = cronSchedule.getCommand();
 
-        boolean isMinutesSame = minutes.equals(parsedCron.getMinutes());
-        boolean isHoursSame = hours.equals(parsedCron.getHours());
-        boolean isDayOfMonthSame = dayOfMonth.equals(parsedCron.getDayOfMonth());
-        boolean isMonthSame = month.equals(parsedCron.getMonth());
-        boolean isDayofWeekSame = dayOfWeek.equals(parsedCron.getDayOfWeek());
+        boolean isMinutesSame = minutes.equals(cronSchedule.getMinutes());
+        boolean isHoursSame = hours.equals(cronSchedule.getHours());
+        boolean isDayOfMonthSame = dayOfMonth.equals(cronSchedule.getDayOfMonth());
+        boolean isMonthSame = month.equals(cronSchedule.getMonth());
+        boolean isDayofWeekSame = dayOfWeek.equals(cronSchedule.getDayOfWeek());
         boolean isCommandSame = parsedCommand.equals("ABC");
 
         if(!isMinutesSame || !isHoursSame || !isDayOfMonthSame|| !isMonthSame || !isDayofWeekSame || !isCommandSame){
@@ -276,19 +274,19 @@ public class ApplicationTest {
                 .command("ABC")
                 .build();
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
-        ParsedCron parsedCron = cronParser.parseCron(cron8);
+        CronSchedule cronSchedule = cronParser.parseCron(cron8);
         List<Integer> minutes = List.of(0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55);
         List<Integer> hours = List.of(0, 3, 6, 9, 12, 15, 18, 21);
         List<Integer> dayOfMonth = List.of(1, 3, 5, 7, 9 , 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31);
         List<Integer> month = List.of(1, 3, 5, 7, 9, 11);
         List<Integer> dayOfWeek = IntStream.rangeClosed(0, 6).boxed().toList();
-        String parsedCommand = parsedCron.getCommand();
+        String parsedCommand = cronSchedule.getCommand();
 
-        boolean isMinutesSame = minutes.equals(parsedCron.getMinutes());
-        boolean isHoursSame = hours.equals(parsedCron.getHours());
-        boolean isDayOfMonthSame = dayOfMonth.equals(parsedCron.getDayOfMonth());
-        boolean isMonthSame = month.equals(parsedCron.getMonth());
-        boolean isDayofWeekSame = dayOfWeek.equals(parsedCron.getDayOfWeek());
+        boolean isMinutesSame = minutes.equals(cronSchedule.getMinutes());
+        boolean isHoursSame = hours.equals(cronSchedule.getHours());
+        boolean isDayOfMonthSame = dayOfMonth.equals(cronSchedule.getDayOfMonth());
+        boolean isMonthSame = month.equals(cronSchedule.getMonth());
+        boolean isDayofWeekSame = dayOfWeek.equals(cronSchedule.getDayOfWeek());
         boolean isCommandSame = parsedCommand.equals("ABC");
 
         if(!isMinutesSame || !isHoursSame || !isDayOfMonthSame|| !isMonthSame || !isDayofWeekSame || !isCommandSame){
@@ -310,19 +308,19 @@ public class ApplicationTest {
                 .command("ABC")
                 .build();
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
-        ParsedCron parsedCron = cronParser.parseCron(cron9);
+        CronSchedule cronSchedule = cronParser.parseCron(cron9);
         List<Integer> minutes = List.of(30);
         List<Integer> hours = List.of(4);
         List<Integer> dayOfMonth = List.of(10);
         List<Integer> month = List.of(12);
         List<Integer> dayOfWeek = List.of(2);
-        String parsedCommand = parsedCron.getCommand();
+        String parsedCommand = cronSchedule.getCommand();
 
-        boolean isMinutesSame = minutes.equals(parsedCron.getMinutes());
-        boolean isHoursSame = hours.equals(parsedCron.getHours());
-        boolean isDayOfMonthSame = dayOfMonth.equals(parsedCron.getDayOfMonth());
-        boolean isMonthSame = month.equals(parsedCron.getMonth());
-        boolean isDayofWeekSame = dayOfWeek.equals(parsedCron.getDayOfWeek());
+        boolean isMinutesSame = minutes.equals(cronSchedule.getMinutes());
+        boolean isHoursSame = hours.equals(cronSchedule.getHours());
+        boolean isDayOfMonthSame = dayOfMonth.equals(cronSchedule.getDayOfMonth());
+        boolean isMonthSame = month.equals(cronSchedule.getMonth());
+        boolean isDayofWeekSame = dayOfWeek.equals(cronSchedule.getDayOfWeek());
         boolean isCommandSame = parsedCommand.equals("ABC");
 
         if(!isMinutesSame || !isHoursSame || !isDayOfMonthSame|| !isMonthSame || !isDayofWeekSame || !isCommandSame){
@@ -345,7 +343,7 @@ public class ApplicationTest {
 
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         try {
-            ParsedCron parsedCron = cronParser.parseCron(cron1);
+            CronSchedule cronSchedule = cronParser.parseCron(cron1);
             System.out.println("Negative Test 1 FAILED");
         }catch (CronParserException e){
             System.out.println("Negative Test 1 PASSED");
@@ -366,7 +364,7 @@ public class ApplicationTest {
 
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         try {
-            ParsedCron parsedCron = cronParser.parseCron(cron2);
+            CronSchedule cronSchedule = cronParser.parseCron(cron2);
             System.out.println("Negative Test 2 FAILED");
         }catch (CronParserException e){
             System.out.println("Negative Test 2 PASSED");
@@ -387,7 +385,7 @@ public class ApplicationTest {
 
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         try {
-            ParsedCron parsedCron = cronParser.parseCron(cron3);
+            CronSchedule cronSchedule = cronParser.parseCron(cron3);
             System.out.println("Negative Test 3 FAILED");
         }catch (CronParserException e){
             System.out.println("Negative Test 3 PASSED");
@@ -408,7 +406,7 @@ public class ApplicationTest {
 
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         try {
-            ParsedCron parsedCron = cronParser.parseCron(cron4);
+            CronSchedule cronSchedule = cronParser.parseCron(cron4);
             System.out.println("Negative Test 4 FAILED");
         }catch (CronParserException e){
             System.out.println("Negative Test 4 PASSED");
@@ -429,7 +427,7 @@ public class ApplicationTest {
 
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         try {
-            ParsedCron parsedCron = cronParser.parseCron(cron5);
+            CronSchedule cronSchedule = cronParser.parseCron(cron5);
             System.out.println("Negative Test 5 FAILED");
         }catch (CronParserException e){
             System.out.println("Negative Test 5 PASSED");
@@ -450,7 +448,7 @@ public class ApplicationTest {
 
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         try {
-            ParsedCron parsedCron = cronParser.parseCron(cron6);
+            CronSchedule cronSchedule = cronParser.parseCron(cron6);
             System.out.println("Negative Test 6 FAILED");
         }catch (CronParserException e){
             System.out.println("Negative Test 6 PASSED");
@@ -471,7 +469,7 @@ public class ApplicationTest {
 
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         try {
-            ParsedCron parsedCron = cronParser.parseCron(cron7);
+            CronSchedule cronSchedule = cronParser.parseCron(cron7);
             System.out.println("Negative Test 7 FAILED");
         }catch (CronParserException e){
             System.out.println("Negative Test 7 PASSED");
@@ -493,7 +491,7 @@ public class ApplicationTest {
 
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         try {
-            ParsedCron parsedCron = cronParser.parseCron(cron8);
+            CronSchedule cronSchedule = cronParser.parseCron(cron8);
             System.out.println("Negative Test 8 FAILED");
         }catch (CronParserException e){
             System.out.println("Negative Test 8 PASSED");
@@ -514,7 +512,7 @@ public class ApplicationTest {
 
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         try {
-            ParsedCron parsedCron = cronParser.parseCron(cron9);
+            CronSchedule cronSchedule = cronParser.parseCron(cron9);
             System.out.println("Negative Test 9 FAILED");
         }catch (CronParserException e){
             System.out.println("Negative Test 9 PASSED");
@@ -534,7 +532,7 @@ public class ApplicationTest {
 
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         try {
-            ParsedCron parsedCron = cronParser.parseCron(cron10);
+            CronSchedule cronSchedule = cronParser.parseCron(cron10);
             System.out.println("Negative Test 10 FAILED");
         }catch (CronParserException e){
             System.out.println("Negative Test 10 PASSED");

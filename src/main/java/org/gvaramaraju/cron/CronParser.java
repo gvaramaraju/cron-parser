@@ -17,7 +17,7 @@ public class CronParser {
         this.dayOfWeekFieldParser = cronParserFactory.createDayOfWeekParser();
     }
 
-    public ParsedCron parseCron(CronExpression cronExpression){
+    public CronSchedule parseCron(CronExpression cronExpression){
         List<Integer> minutes = minuteFieldParser.parseField(cronExpression.getMinutes());
         List<Integer> hours = hourFieldParser.parseField(cronExpression.getHours());
         List<Integer> daysOfMonth = dayOfMonthFieldParser.parseField(cronExpression.getDayOfMonth());
@@ -25,6 +25,6 @@ public class CronParser {
         List<Integer> daysOfWeek = dayOfWeekFieldParser.parseField(cronExpression.getDayOfWeek());
         String command = cronExpression.getCommand();
         if(command == null || command.isBlank()) throw new CronParserException("Invalid command in cron");
-        return new ParsedCron(minutes, hours, daysOfMonth, months, daysOfWeek, command);
+        return new CronSchedule(minutes, hours, daysOfMonth, months, daysOfWeek, command);
     }
 }

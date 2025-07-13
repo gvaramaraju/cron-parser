@@ -9,18 +9,19 @@ public class Application {
         }
         String inputArg = args[0];
         System.out.println("Input Args = " + inputArg);
-        String[] cronParts = inputArg.split(" ");
+        SimpleCronTokenizer simpleCronTokenizer = new SimpleCronTokenizer();
+        List<String> cronFields = simpleCronTokenizer.tokenize(inputArg);
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         CronExpression cronExpression = new CronExpression.Builder().
-                minutes(cronParts[0])
-                .hours(cronParts[1])
-                .dayOfMonth(cronParts[2])
-                .month(cronParts[3])
-                .dayOfWeek(cronParts[4])
-                .command(cronParts[5])
+                minutes(cronFields.get(0))
+                .hours(cronFields.get(1))
+                .dayOfMonth(cronFields.get(2))
+                .month(cronFields.get(3))
+                .dayOfWeek(cronFields.get(4))
+                .command(cronFields.get(5))
                 .build();
-        ParsedCron parsedCron = cronParser.parseCron(cronExpression);
+        CronSchedule cronSchedule = cronParser.parseCron(cronExpression);
         CronOutputWriter writer = new ConsoleCronOutputWriter();
-        writer.writeCronParserOutput(parsedCron);
+        writer.writeCronParserOutput(cronSchedule);
     }
 }
