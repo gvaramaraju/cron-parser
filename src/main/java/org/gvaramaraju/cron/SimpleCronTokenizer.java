@@ -6,6 +6,6 @@ import java.util.List;
 
 public class SimpleCronTokenizer implements CronTokenizer {
     public List<String> tokenize(String field) {
-        return Arrays.asList(field.split(","));
+        return Arrays.asList(field.split(" "));
     }
 }

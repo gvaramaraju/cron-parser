@@ -16,6 +16,7 @@ public class ApplicationTest {
         test.test7();
         test.test8();
         test.test9();
+        test.test10();
 
         test.negativeTest1();
         test.negativeTest2();
@@ -327,6 +328,39 @@ public class ApplicationTest {
             System.out.println("Test 9 FAILED");
         }else {
             System.out.println("Test 9 PASSED");
+        }
+    }
+
+    void test10(){
+        // Case 10: Overlapping values
+        CronExpression cron9 = new CronExpression.Builder()
+                .minutes("1,3,5,2-4")
+                .hours("4")
+                .dayOfMonth("10")
+                .month("12")
+                .dayOfWeek("2")
+                .command("ABC")
+                .build();
+        CronParser cronParser = new CronParser(new DefaultCronParserFactory());
+        CronSchedule cronSchedule = cronParser.parseCron(cron9);
+        List<Integer> minutes = List.of(1,2,3,4,5);
+        List<Integer> hours = List.of(4);
+        List<Integer> dayOfMonth = List.of(10);
+        List<Integer> month = List.of(12);
+        List<Integer> dayOfWeek = List.of(2);
+        String parsedCommand = cronSchedule.getCommand();
+
+        boolean isMinutesSame = minutes.equals(cronSchedule.getMinutes());
+        boolean isHoursSame = hours.equals(cronSchedule.getHours());
+        boolean isDayOfMonthSame = dayOfMonth.equals(cronSchedule.getDayOfMonth());
+        boolean isMonthSame = month.equals(cronSchedule.getMonth());
+        boolean isDayofWeekSame = dayOfWeek.equals(cronSchedule.getDayOfWeek());
+        boolean isCommandSame = parsedCommand.equals("ABC");
+
+        if(!isMinutesSame || !isHoursSame || !isDayOfMonthSame|| !isMonthSame || !isDayofWeekSame || !isCommandSame){
+            System.out.println("Test 10 FAILED");
+        }else {
+            System.out.println("Test 10 PASSED");
         }
     }
 

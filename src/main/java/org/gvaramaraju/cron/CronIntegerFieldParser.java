@@ -1,7 +1,7 @@
 package org.gvaramaraju.cron;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.gvaramaraju.cron.Constants.*;
 
@@ -19,12 +19,22 @@ public class CronIntegerFieldParser extends CronFieldParser{
         if(cronField.equals(ALL)){
             return elements(min, max, 1);
         } else if (cronField.contains(Constants.COMMA)) {
-            List<Integer> minutes = new ArrayList<>();
+            Set<Integer> uniqueElements = new HashSet<>();
             String[] split = cronField.split(COMMA);
-            for(String minute: split){
-                minutes.add(validateAndGetMinute(minute));
+            for(String element: split){
+                if(element.contains(HYPHEN)){
+                    String[] split1 = element.split(HYPHEN);
+                    int start = validateAndGetElement(split1[0]);
+                    int end = validateAndGetElement(split1[1]);
+                    if(start > end) throw new CronParserException("Invalid cron expression");
+                    uniqueElements.addAll(elements(start, end, 1));
+                }else{
+                    uniqueElements.add(validateAndGetElement(element));
+                }
             }
-            return minutes;
+            List<Integer> times = uniqueElements.stream().collect(Collectors.toList());
+            Collections.sort(times);
+            return times;
         }else if(cronField.contains(SLASH)){
             String[] split = cronField.split(SLASH);
             if(split.length != 2) throw new CronParserException("Invalid cron");
@@ -34,26 +44,26 @@ public class CronIntegerFieldParser extends CronFieldParser{
                 return elements(min, max, validateAndGetStep(suffix));
             }else if(prefix.contains(HYPHEN)){
                 String[] split1 = prefix.split(HYPHEN);
-                int start = validateAndGetMinute(split1[0]);
-                int end = validateAndGetMinute(split1[1]);
+                int start = validateAndGetElement(split1[0]);
+                int end = validateAndGetElement(split1[1]);
                 return elements(start, end, validateAndGetStep(suffix));
             }else{
-                int start = validateAndGetMinute(prefix);
+                int start = validateAndGetElement(prefix);
                 return elements(start, max, validateAndGetStep(suffix));
             }
         }else if(cronField.contains(HYPHEN)){
             String[] split1 = cronField.split(HYPHEN);
-            int start = validateAndGetMinute(split1[0]);
-            int end = validateAndGetMinute(split1[1]);
+            int start = validateAndGetElement(split1[0]);
+            int end = validateAndGetElement(split1[1]);
             if(start > end) throw new CronParserException("Invalid cron expression");
             return elements(start, end, 1);
         }else {
-                int minute = validateAndGetMinute(cronField);
+                int minute = validateAndGetElement(cronField);
                 return List.of(minute);
         }
     }
 
-    private Integer validateAndGetMinute(String minute) {
+    private Integer validateAndGetElement(String minute) {
         try{
             int parsedMinute = Integer.parseInt(minute);
             if(parsedMinute >= min && parsedMinute <= max){

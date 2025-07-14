@@ -5,7 +5,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         if(args.length != 1){
-            throw new RuntimeException("Input proper args");
+            throw new RuntimeException("Please enter cron expression as arg");
         }
         String inputArg = args[0];
         System.out.println("Input Args = " + inputArg);
@@ -21,7 +21,7 @@ public class Application {
                 .command(cronFields.get(5))
                 .build();
         CronSchedule cronSchedule = cronParser.parseCron(cronExpression);
-        CronOutputWriter writer = new ConsoleCronOutputWriter();
+        CronOutputWriter writer = new ConsoleTableOutputWriter();
         writer.writeCronParserOutput(cronSchedule);
     }
 }
