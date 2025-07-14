@@ -9,8 +9,10 @@ public class Application {
         }
         String inputArg = args[0];
         System.out.println("Input Args = " + inputArg);
+        // Splitting input cron expression
         SimpleCronTokenizer simpleCronTokenizer = new SimpleCronTokenizer();
         List<String> cronFields = simpleCronTokenizer.tokenize(inputArg);
+        // Creating parser with default parsers
         CronParser cronParser = new CronParser(new DefaultCronParserFactory());
         CronExpression cronExpression = new CronExpression.Builder().
                 minutes(cronFields.get(0))
@@ -21,6 +23,7 @@ public class Application {
                 .command(cronFields.get(5))
                 .build();
         CronSchedule cronSchedule = cronParser.parseCron(cronExpression);
+        // Writing to console
         CronOutputWriter writer = new ConsoleTableOutputWriter();
         writer.writeCronParserOutput(cronSchedule);
     }
